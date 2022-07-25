@@ -33,7 +33,7 @@ public class AccountApiController {
             @ApiResponse(code = 403, message = "no access rights"),
             @ApiResponse(code = 404, message = "account not found"),
     })
-    public OkResponse<AccountResponse> byId(@ApiParam(value = "user id") @PathVariable ObjectId id) throws ChangeSetPersister.NotFoundException {
+    public OkResponse<AccountResponse> byId(@ApiParam(value = "user id") @PathVariable ObjectId id) throws ChangeSetPersister.NotFoundException, NotAccessException, AuthException {
         return OkResponse.of(AccountMapping.getInstance().getResponse().convert(
                 accountApiService.findByID(id).orElseThrow(ChangeSetPersister.NotFoundException::new)
         ));
@@ -75,6 +75,7 @@ public class AccountApiController {
     @ApiOperation(value = "delete account", notes = "use this if you need delete account")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Success"),
+            @ApiResponse(code = 400, message = "account ID invalid"),
             @ApiResponse(code = 403, message = "no access rights")
     })
     public OkResponse<String> deleteById(@ApiParam(value = "account id") @PathVariable ObjectId id) throws NotAccessException, AuthException {
