@@ -41,7 +41,12 @@ public class AccountApiService {
         return  accountDoc;
     }
 
-    public Optional<AccountDoc> findByID(ObjectId id){
+    public Optional<AccountDoc> findByID(ObjectId id) throws AuthException, NotAccessException {
+        AccountDoc verification =authService.currentAccount();
+        Boolean isAuthor =verification.getId().equals(id);
+        Boolean isAdmin=verification.getIsAdmin();
+        Boolean canEdit= isAuthor||isAdmin;
+        if(!canEdit) throw new NotAccessException();
         return accountRepository.findById(id);
     }
 
@@ -87,7 +92,11 @@ public class AccountApiService {
     }
 
     public void delete(ObjectId id) throws NotAccessException, AuthException {
-        if(authService.currentAccount().getId().equals(id) == false) throw new NotAccessException();
+        AccountDoc verification =authService.currentAccount();
+        Boolean isAuthor =verification.getId().equals(id);
+        Boolean isAdmin=verification.getIsAdmin();
+        Boolean canEdit= isAuthor||isAdmin;
+        if(!canEdit) throw new NotAccessException();
         accountRepository.deleteById(id);
     }
 }
