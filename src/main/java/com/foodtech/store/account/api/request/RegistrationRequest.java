@@ -10,6 +10,8 @@ import lombok.Setter;
 public class RegistrationRequest {
     private String email;
     private String password;
+    private String name;
+    private Long phone;
     private Boolean isAdmin = false;
 }
 
