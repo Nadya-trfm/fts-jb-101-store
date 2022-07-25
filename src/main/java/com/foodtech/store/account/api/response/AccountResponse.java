@@ -12,9 +12,9 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @ApiModel(value ="AccountResponse",description = "account data(for search and list)")
 public class AccountResponse {
-    protected String id;
-    protected String name;
-    protected Long phone;
-    protected String email;
-    protected Boolean isAdmin;
+    private String id;
+    private String name;
+    private Long phone;
+    private String email;
+    private Boolean isAdmin;
 }
