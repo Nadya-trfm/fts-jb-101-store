@@ -1,6 +1,6 @@
 package com.foodtech.store.auth.routes;
 
-import com.foodtech.store.base.routes.BaseApiRoutes;
+import com.foodtech.store.base.routers.BaseApiRoutes;
 
 public class AuthRoutes {
     public static final String ROOT = BaseApiRoutes.V1;

@@ -1,7 +1,7 @@
 package com.foodtech.store.street.routes;
 
 
-import com.foodtech.store.base.routes.BaseApiRoutes;
+import com.foodtech.store.base.routers.BaseApiRoutes;
 
 public class StreetApiRoutes {
     public static final String ROOT = BaseApiRoutes.V1 +"/street";

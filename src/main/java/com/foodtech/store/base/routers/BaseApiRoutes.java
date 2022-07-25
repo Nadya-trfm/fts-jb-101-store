@@ -1,4 +1,4 @@
-package com.foodtech.store.base.routes;
+package com.foodtech.store.base.routers;
 
 public class BaseApiRoutes {
     private static final String ROOT ="/api";
