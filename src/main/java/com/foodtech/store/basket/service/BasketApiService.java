@@ -70,16 +70,13 @@ public class BasketApiService {
         return SearchResponse.of(basketDocs, count);
     }
 
-    public BasketDoc update(ObjectId id, BasketRequest request) throws BasketNotExistException, NotAccessException, BundleNotExistException {
+    public BasketDoc update(ObjectId id, BasketRequest request) throws BasketNotExistException,  BundleNotExistException {
 
         Optional<BasketDoc> basketDocOptional = basketRepository.findById(id);
         if(basketDocOptional.isPresent() == false){
             throw new BasketNotExistException();
         }
-        Optional<UserDoc> userDocOptional = userRepository.findById(request.getUserId());
-        if (userDocOptional.isPresent() == false) {
-            throw new NotAccessException();
-        }
+
         for(ObjectId bundle: request.getBundlesId()){
         Optional<BundleDoc> bundleDocOptional = bundleRepository.findById(bundle);
             if (bundleDocOptional.isPresent() == false) {
